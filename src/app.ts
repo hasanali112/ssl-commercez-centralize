@@ -4,6 +4,9 @@ import cookieParser from "cookie-parser";
 import httpStatus from "http-status";
 import globalErrorHandler from "./app/middleware/globalErrorHandler";
 import { notFoundRoutes } from "./app/middleware/notFoundRoutes";
+import { StoreRoutes } from "./app/modules/Store/store.routes";
+import { PaymentRoutes } from "./app/modules/Payment/payment.routes";
+import { MessageRoutes } from "./app/modules/Message/message.routes";
 
 const app: Application = express();
 
@@ -15,6 +18,7 @@ const corsOptions = {
     "http://127.0.0.1:3000",
     "http://127.0.0.1:3001",
     "http://localhost:3000",
+    "http://localhost:5000",
     "http://localhost:5173",
     "http://localhost:5174",
     "https://shoe.infinityhubbd.online",
@@ -26,6 +30,14 @@ const corsOptions = {
 };
 
 app.use(cors(corsOptions));
+
+app.use("/api/v1", StoreRoutes);
+
+//payment
+app.use("/payment", PaymentRoutes);
+
+//message
+app.use("/comfirmation", MessageRoutes);
 
 app.get("/", (req: Request, res: Response) => {
   res.status(httpStatus.OK).json({
