@@ -15,7 +15,7 @@ const initiatePayment = async (findStore: any, payload: InitiatePayment) => {
       success_url: `${config.ssl.success_url}/comfirmation/success?transactionId=${payload?.transactionId}&amount=${payload?.findOrder?.totalPrice}`,
       fail_url: `${config.ssl.fail_url}/comfirmation/fail?transactionId=${payload?.transactionId}&amount=${payload?.findOrder?.totalPrice}`,
       cancel_url: `${findStore?.storeFrontendUrl}`,
-      ipn_url: "https://shoes-sever.vercel.app/api/v1/payment/ipn",
+      ipn_url: "https://centralize-paymentgetway.vercel.app/payment/ipn",
       shipping_method: "Courier",
       product_name: payload?.margeAllName,
       product_category: payload?.findOrder?.orderItems[0]?.category,

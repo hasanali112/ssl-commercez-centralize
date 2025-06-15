@@ -22,6 +22,7 @@ const corsOptions = {
     "http://localhost:5173",
     "http://localhost:5174",
     "https://shoe.infinityhubbd.online",
+    "https://shoes-sever.vercel.app",
     "https://sellercenter.shoe.infinityhubbd.online",
     "https://sandbox.sslcommerz.com",
     "https://securepay.sslcommerz.com",
@@ -43,7 +44,7 @@ app.get("/", (req: Request, res: Response) => {
   res.status(httpStatus.OK).json({
     statusCode: httpStatus.OK,
     success: true,
-    message: "Shoes server is running successfully",
+    message: "Payment server is running successfully",
   });
 });
 

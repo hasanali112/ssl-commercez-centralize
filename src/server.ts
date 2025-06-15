@@ -13,7 +13,9 @@ async function main() {
     await mongoose.connect(config.database_url as string);
     console.log("✅ Database connection successful!");
     server = app.listen(port, () => {
-      console.log(`🚀 Shoes server is running at http://192.168.0.104:${port}`);
+      console.log(
+        `🚀 Payment server is running at http://192.168.0.104:${port}`
+      );
     });
   } catch (error) {
     console.error("❌ Failed to connect to the database:", error);

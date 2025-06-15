@@ -3,6 +3,7 @@ import { PaymentHistory } from "../PaymentHistory/paymentHistory.model";
 import { SSLService } from "../SSL/paymentInitiate";
 import { Store } from "../Store/store.model";
 import { InitiatePayment } from "./payment.interface";
+import axios from "axios";
 
 const initPayment = async (payload: InitiatePayment) => {
   const session = await startSession();
@@ -59,7 +60,6 @@ const validatePayment = async (payload: any) => {
 
   const res = await SSLService.validatedPayment(payload);
 
-  console.log(res);
   if (res?.status !== "VALID") {
     return {
       message: "Payment failed",
@@ -67,18 +67,27 @@ const validatePayment = async (payload: any) => {
   }
 
   //update status
-  // await Order.findOneAndUpdate(
-  //   { transactionId: res?.tran_id },
-  //   {
-  //     paymentStatus: 'PAID',
-  //     paymentTransactionId: res?.bank_tran_id,
-  //     paymentInfo: res,
-  //   },
-  //   { new: true }
-  // )
+  await PaymentHistory.findOneAndUpdate(
+    { transactionId: res?.tran_id },
+    {
+      paymentStatus: "PAID",
+      isPaid: true,
+      paymentTransactionId: res?.bank_tran_id,
+      paymentInfo: res,
+    },
+    { new: true }
+  );
+
+  //req send to another server for update database
+  await axios({
+    method: "post",
+    url: `https://shoes-sever.vercel.app/api/v1/payment/ipn`,
+    data: res,
+  });
 
   return {
     message: "Payment success",
+    data: res,
   };
 };
 
