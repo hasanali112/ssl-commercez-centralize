@@ -23,6 +23,7 @@ const corsOptions = {
     "http://localhost:5174",
     "https://shoe.infinityhubbd.online",
     "https://shoes-sever.vercel.app",
+    "https://cosmetics-sever.vercel.app",
     "https://sellercenter.shoe.infinityhubbd.online",
     "https://sandbox.sslcommerz.com",
     "https://securepay.sslcommerz.com",

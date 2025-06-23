@@ -6,6 +6,7 @@ import { InitiatePayment } from "./payment.interface";
 import axios from "axios";
 
 const initPayment = async (payload: InitiatePayment) => {
+  console.log(payload);
   const session = await startSession();
   session.startTransaction();
 
@@ -81,7 +82,7 @@ const validatePayment = async (payload: any) => {
   //req send to another server for update database
   await axios({
     method: "post",
-    url: `https://shoes-sever.vercel.app/api/v1/payment/ipn`,
+    url: `https://cosmetics-sever.vercel.app/api/v1/payment/ipn`,
     data: res,
   });
 

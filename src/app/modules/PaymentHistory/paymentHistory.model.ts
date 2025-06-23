@@ -13,7 +13,6 @@ const OrderItemSchema = new Schema<IOrderItem>({
   variantDiscount: { type: Number, required: true },
   variant: { type: String, required: true },
   size: { type: String, required: true },
-  color: { type: String, required: true },
   productImage: { type: String, required: true },
   quantity: { type: Number, required: true },
 });
