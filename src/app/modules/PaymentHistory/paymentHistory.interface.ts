@@ -10,6 +10,7 @@ export interface IOrderItem {
   variantDiscount: number;
   variant: string;
   size: string;
+  color: string;
   productImage: string;
   quantity: number;
   _id: string;

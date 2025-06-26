@@ -68,7 +68,7 @@ const validatePayment = async (payload: any) => {
   }
 
   //update status
-  await PaymentHistory.findOneAndUpdate(
+  const result = await PaymentHistory.findOneAndUpdate(
     { transactionId: res?.tran_id },
     {
       paymentStatus: "PAID",
@@ -79,10 +79,12 @@ const validatePayment = async (payload: any) => {
     { new: true }
   );
 
+  const findStore = await Store.findOne({ storeId: result?.storeId });
+
   //req send to another server for update database
   await axios({
     method: "post",
-    url: `https://cosmetics-sever.vercel.app/api/v1/payment/ipn`,
+    url: `${findStore?.storeUrl}/api/v1/payment/ipn`,
     data: res,
   });
 

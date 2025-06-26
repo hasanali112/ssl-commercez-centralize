@@ -12,7 +12,8 @@ const OrderItemSchema = new Schema<IOrderItem>({
   savedPrice: { type: Number, required: true },
   variantDiscount: { type: Number, required: true },
   variant: { type: String, required: true },
-  size: { type: String, required: true },
+  size: { type: String },
+  color: { type: String },
   productImage: { type: String, required: true },
   quantity: { type: Number, required: true },
 });

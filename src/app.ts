@@ -24,6 +24,7 @@ const corsOptions = {
     "https://shoe.infinityhubbd.online",
     "https://shoes-sever.vercel.app",
     "https://cosmetics-sever.vercel.app",
+    "https://mobile-server-pi.vercel.app",
     "https://sellercenter.shoe.infinityhubbd.online",
     "https://sandbox.sslcommerz.com",
     "https://securepay.sslcommerz.com",
